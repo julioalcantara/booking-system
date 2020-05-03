@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, View, RefreshControl } from 'react-native';
 import { employeesFetch } from '../actions';
-import ListItem from './ListItem';
+import ListItem from '../components/ListItem';
 
 class EmployeeList extends Component {
   UNSAFE_componentWillMount() {

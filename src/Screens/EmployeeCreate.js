@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { employeeUpdate, employeeCreate } from '../actions';
-import { Card, CardSection, Button } from './common';
-import EmployeeForm from './EmployeeForm';
+import { Card, CardSection, Button } from '../components/common';
+import EmployeeForm from '../Forms/EmployeeForm';
 
 class EmployeeCreate extends Component {
   onButtonPress() {

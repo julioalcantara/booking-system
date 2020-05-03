@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
-import EmployeeForm from './EmployeeForm';
+import EmployeeForm from '../Forms/EmployeeForm';
 import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
-import { Card, CardSection, Button, Confirm } from './common';
+import { Card, CardSection, Button, Confirm } from '../components/common';
 
 class EmployeeEdit extends Component {
   state = { showModal: false };
