@@ -4,6 +4,7 @@ import LoginForm from './Forms/LoginForm';
 import EmployeeList from './Screens/EmployeeList';
 import EmployeeCreate from './Screens/EmployeeCreate';
 import EmployeeEdit from './Screens/EmployeeEdit';
+import CreateAccount from './Forms/CreateAccount';
 
 const RouterComponent = () => {
     return(
@@ -11,6 +12,7 @@ const RouterComponent = () => {
             <Scene key="root" hideNavBar>
                 <Scene key="auth">
                     <Scene key="login" component={LoginForm} title="Please Login" />
+                    <Scene key="createAccont" component={CreateAccount} title="Create Account" />
                 </Scene>
                 <Scene key="main">
                     <Scene 

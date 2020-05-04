@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, goToCreateAcc } from '../actions';
-import { Card, CardSection, Input, Button, Spinner, NavLink } from '../components/common';
+import { emailChanged, passwordChanged, createAccount } from '../actions';
+import { Card, CardSection, Input, Button, Spinner } from '../components/common';
 
-class LoginForm extends Component {
+
+class CreateAccount extends Component {
     onEmailChange(text) {
         this.props.emailChanged(text);
     }
@@ -15,7 +16,7 @@ class LoginForm extends Component {
 
     onButtonPress() {
         const { email, password } = this.props;
-        this.props.loginUser({ email, password });
+        this.props.createAccount({ email, password });
     }
 
     renderError() {
@@ -37,7 +38,7 @@ class LoginForm extends Component {
         }
         return (
             <Button onPress ={this.onButtonPress.bind(this)} >
-                Login
+                Create Account 
                 </Button>
         );
     }
@@ -69,13 +70,6 @@ class LoginForm extends Component {
                 <CardSection>
                     {this.renderButton()}
                 </CardSection>
-
-                <TouchableOpacity onPress={goToCreateAcc}>
-                    <NavLink 
-                        text = "Go to create account"
-                    />
-                </TouchableOpacity>
-                
             </Card>
         );
     }
@@ -90,11 +84,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, loginUser, error, loading } = auth;
+    const { email, password, createAccount, error, loading } = auth;
   
-    return { email, password, loginUser, error, loading };
+    return { email, password, createAccount, error, loading };
   };
   
   export default connect(mapStateToProps, {
-    emailChanged, passwordChanged, loginUser, goToCreateAcc
-  })(LoginForm);
+    emailChanged, passwordChanged, createAccount
+  })(CreateAccount);
