@@ -31,7 +31,7 @@ renderRow(employee) {
                 data = {this.props.employees}
                 renderItem = {({item}) => this.renderRow(item)}
                 onRefresh={() => this.renderRefreshControl()}
-				refreshing={this.state.isLoading}
+				        refreshing={this.state.isLoading}
                 keyExtractor={(item, index) => item.uid}
             />
         </View>

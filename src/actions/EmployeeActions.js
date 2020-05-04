@@ -34,10 +34,11 @@ export const employeeCreate = ({ name, phone, shift }) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
     .push({ name, phone, shift })
     .then(() => {
-      dispatch({ type: EMPLOYEE_CREATE });
+      dispatch({ type: EMPLOYEE_CREATE })
+
+    .catch(() => loginUserFail(dispatch));
       Actions.pop();
-    });
-    
+    }); 
   }
 };
 
@@ -59,8 +60,8 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set({ name, phone, shift })
       .then(() => {
-        dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
-        Actions.employeeList({ type: 'reset' });
+        dispatch({ type: EMPLOYEE_SAVE_SUCCESS })
+        Actions.employeeList({ type: 'reset' })
       });
   };
 };
@@ -76,3 +77,4 @@ export const employeeDelete = ({ uid }) => {
       });
   };
 };
+

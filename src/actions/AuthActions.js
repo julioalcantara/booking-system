@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  CREATE_ACCOUNT
+  CREATE_ACCOUNT,
+  CREATE_ACC_SUCCESS
 } from './types';
 
 export const emailChanged = (text) => {
@@ -29,9 +30,7 @@ export const loginUser = ({ email, password }) => {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(() => loginUserFail(dispatch));
   };
 };
 
@@ -39,7 +38,7 @@ export const createAccount = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: CREATE_ACCOUNT });
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(user => loginUserSuccess(dispatch, user))
+        .then(user => createAccSuccess(dispatch, user))
         .catch(() => loginUserFail(dispatch));
   };
 };
@@ -57,6 +56,21 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.main();
 };
 
+const createAccSuccess = (dispatch, user) => {
+  dispatch({
+    type: CREATE_ACC_SUCCESS,
+    payload: user
+  });
+
+  Actions.main();
+};
+
+//navigate to Create Screen
 export const goToCreateAcc = () => {
   return Actions.createAccont();
+}
+
+//navigate to Login screen
+export const goToLogin = () => {
+  return Actions.login();
 }

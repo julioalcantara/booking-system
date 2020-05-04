@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, createAccount } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from '../components/common';
+import { emailChanged, passwordChanged, createAccount, goToLogin } from '../actions';
+import { Card, CardSection, Input, Button, Spinner, NavLink } from '../components/common';
 
 
 class CreateAccount extends Component {
@@ -70,6 +70,12 @@ class CreateAccount extends Component {
                 <CardSection>
                     {this.renderButton()}
                 </CardSection>
+
+                <TouchableOpacity onPress={goToLogin}>
+                    <NavLink 
+                        text = "Login, HERE!"
+                    />
+                </TouchableOpacity>
             </Card>
         );
     }
@@ -90,5 +96,5 @@ const mapStateToProps = ({ auth }) => {
   };
   
   export default connect(mapStateToProps, {
-    emailChanged, passwordChanged, createAccount
+    emailChanged, passwordChanged, createAccount, goToLogin
   })(CreateAccount);
