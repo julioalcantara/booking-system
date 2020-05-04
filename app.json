@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "front-end",
-    "slug": "front-end",
+    "name": "booking-system",
+    "slug": "booking-system",
     "platforms": [
       "ios",
       "android",
