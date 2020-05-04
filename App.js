@@ -9,14 +9,13 @@ import Router from './src/Router';
 class App extends Component {
   UNSAFE_componentWillMount() {
     const firebaseConfig = {
-      apiKey: 'AIzaSyCTE-pW5JBWKssKyPqLw1tMpN3k2P9348k',
-      authDomain: 'manager-66b3d.firebaseapp.com',
-      databaseURL: 'https://manager-66b3d.firebaseio.com',
-      projectId: 'manager-66b3d',
-      storageBucket: 'manager-66b3d.appspot.com',
-      messagingSenderId: '527750627407',
-      appId: '1:527750627407:web:5e8feef74342f068396a3a',
-      measurementId: 'G-J1DG1XPTJG'
+      apiKey: "AIzaSyCCactH-1DrppalOmd-GtqYnTCVpgR8Jpw",
+      authDomain: "tgs-app-46963.firebaseapp.com",
+      databaseURL: "https://tgs-app-46963.firebaseio.com",
+      projectId: "tgs-app-46963",
+      storageBucket: "tgs-app-46963.appspot.com",
+      messagingSenderId: "288210351987",
+      appId: "1:288210351987:web:5aa278b5a29c9f39217706"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
