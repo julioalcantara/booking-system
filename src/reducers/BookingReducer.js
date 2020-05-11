@@ -1,12 +1,12 @@
 import { 
-    EMPLOYEES_FETCH_SUCCESS
+    BOOKINGS_FETCH_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = { };
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case EMPLOYEES_FETCH_SUCCESS:
+        case BOOKINGS_FETCH_SUCCESS:
             return action.payload;
         
         default:

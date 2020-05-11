@@ -12,7 +12,7 @@ export const PROFILE_UPDATE = 'profile_update';
 export const PROFILES_FETCH_SUCCESS = 'profiles_fetch_success';
 export const PROFILE_SAVE_SUCCESS = 'profile_save_success';
 
-export const EMPLOYEE_UPDATE = 'employee_update';
-export const EMPLOYEE_CREATE = 'employee_create';
-export const EMPLOYEES_FETCH_SUCCESS = 'employees_fetch_success';
-export const EMPLOYEE_SAVE_SUCCESS = 'employee_save_success';
+export const BOOKING_UPDATE = 'booking_update';
+export const BOOKING_CREATE = 'booking_create';
+export const BOOKINGS_FETCH_SUCCESS = 'bookings_fetch_success';
+export const BOOKING_SAVE_SUCCESS = 'booking_save_success';

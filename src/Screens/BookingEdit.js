@@ -2,35 +2,29 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
-import EmployeeForm from '../Forms/EmployeeForm';
-import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
+import BookingForm from '../Forms/BookingForm';
+import { bookingUpdate, bookingSave, bookingDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from '../components/common';
 
-class EmployeeEdit extends Component {
+class BookingEdit extends Component {
   state = { showModal: false };
 
   UNSAFE_componentWillMount() {
-    _.each(this.props.employee, (value, prop) => {
-      this.props.employeeUpdate({ prop, value });
+    _.each(this.props.booking, (value, prop) => {
+      this.props.bookingUpdate({ prop, value });
     });
   }
 
   onButtonPress() {
-    const { name, phone, shift } = this.props;
+    const {bookingTitle, checkin, checkout } = this.props;
 
-    this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
-  }
-
-  onTextPress() {
-    const { phone, shift } = this.props;
-
-    Communications.text(phone, `Your upcoming shift is on ${shift}`);
+    this.props.bookingSave({bookingTitle, checkin, checkout, uid: this.props.booking.uid });
   }
 
   onAccept() {
-    const { uid } = this.props.employee;
+    const { uid } = this.props.booking;
 
-    this.props.employeeDelete({ uid });
+    this.props.bookingDelete({ uid });
   }
 
   onDecline() {
@@ -40,7 +34,7 @@ class EmployeeEdit extends Component {
   render() {
     return (
       <Card>
-        <EmployeeForm />
+        <BookingForm />
 
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
@@ -49,14 +43,8 @@ class EmployeeEdit extends Component {
         </CardSection>
 
         <CardSection>
-          <Button onPress={this.onTextPress.bind(this)}>
-            Text Schedule
-          </Button>
-        </CardSection>
-
-        <CardSection>
           <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-            Fire Employee
+            Delite Booking
           </Button>
         </CardSection>
 
@@ -73,11 +61,11 @@ class EmployeeEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { name, phone, shift } = state.employeeForm;
+  const { bookingTitle, checkin, checkout } = state.bookingForm;
 
-  return { name, phone, shift };
+  return { bookingTitle, checkin, checkout };
 };
 
 export default connect(mapStateToProps, {
-  employeeUpdate, employeeSave, employeeDelete
-})(EmployeeEdit);
+  bookingUpdate, bookingSave, bookingDelete
+})(BookingEdit);
