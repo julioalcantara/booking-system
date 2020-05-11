@@ -10,13 +10,14 @@ class ProfileItem extends Component {
 
   render() {
     const { firstName } = this.props.profile;
+    const { lastName } = this.props.profile;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
           <CardSection>
             <Text style={styles.titleStyle}>
-              {firstName}
+              {firstName} {lastName}
             </Text>
           </CardSection>
         </View>

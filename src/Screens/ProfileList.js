@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList, View, StyleSheet } from 'react-native';
-import { profilesFetch } from '../actions';
+import { FlatList, View, StyleSheet, TouchableOpacity} from 'react-native';
+import { profilesFetch, goToBookings, goToProfile, goToStudioProfile } from '../actions';
 import { NavLink } from '../components/common/NavLink';
 import ProfileItem from '../components/ProfileItem';
 import { AntDesign, MaterialIcons,Feather } from '@expo/vector-icons';
@@ -37,15 +37,17 @@ renderRow(profile) {
             />
 
             <View style={styles.iconStyle} >
-              <NavLink 
-                text="Bookings"
-              />
-              <NavLink 
-                text="profile"
-              />  
-              <NavLink 
-                text="something"
-              />    
+              <TouchableOpacity onPress={goToProfile}>
+                  <NavLink text="profile"/>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={goToBookings}>
+                  <NavLink text="bookings"/>
+                </TouchableOpacity>
+                  
+                <TouchableOpacity onPress={goToStudioProfile}>
+                  <NavLink text="studio"/>
+                </TouchableOpacity>   
             </View>
             
         </View>
@@ -64,8 +66,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-end',
-    
-
   }
 });
 

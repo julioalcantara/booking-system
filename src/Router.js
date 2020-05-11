@@ -7,9 +7,11 @@ import ProfileList from './Screens/ProfileList';
 import ProfileCreate from './Screens/ProfileCreate';
 import ProfileEdit from './Screens/ProfileEdit';
 
-import EmployeeList from './Screens/EmployeeList';
-import EmployeeCreate from './Screens/EmployeeCreate';
-import EmployeeEdit from './Screens/EmployeeEdit';
+import BookingList from './Screens/BookingList';
+import BookingCreate from './Screens/BookingCreate';
+import BookingEdit from './Screens/BookingEdit';
+
+import StudioProfileScreen from './Screens/StudioProfileScreen';
 
 
 const RouterComponent = () => {
@@ -35,15 +37,19 @@ const RouterComponent = () => {
 
                 <Scene key="booking">
                     <Scene 
-                        onRight={()=> Actions.employeeCreate()}
+                        onRight={()=> Actions.bookingCreate()}
                         rightTitle="Add"
-                        key="employeeList" 
-                        component={EmployeeList} 
-                        title="Employees" 
-                        
+                        key="bookingList" 
+                        component={BookingList} 
+                        title="Bookings" 
+                        initial
                     />
-                    <Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />
-                    <Scene key="employeeEdit" component={EmployeeEdit} title="Edit Employee" />
+                    <Scene key="bookingCreate" component={BookingCreate} title="Create Booking" />
+                    <Scene key="bookingEdit" component={BookingEdit} title="Edit Booking" />
+                </Scene>
+
+                <Scene key="studio">
+                    <Scene key="studioPage" component={StudioProfileScreen} title="Studio Profile"/>
                 </Scene>
             </Scene>
         </Router>

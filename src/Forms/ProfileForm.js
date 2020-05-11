@@ -10,8 +10,8 @@ class ProfileForm extends Component {
       <View>
         <CardSection>
           <Input
-            label="First Name"
-            placeholder="James"
+            label="First Name: "
+            placeholder="your first name"
             value={this.props.firstName}
             onChangeText={value => this.props.profileUpdate({ prop: 'firstName', value })}
           />
@@ -19,8 +19,8 @@ class ProfileForm extends Component {
 
         <CardSection>
           <Input
-            label="Last Name"
-            placeholder="Williams"
+            label="Last Name: "
+            placeholder="your last name"
             value={this.props.lastName}
             onChangeText={value => this.props.profileUpdate({ prop: 'lastName', value })}
           />
@@ -28,8 +28,8 @@ class ProfileForm extends Component {
 
         <CardSection>
           <Input
-            label="Phone"
-            placeholder="555-555-5555"
+            label="Phone: "
+            placeholder="(000) 00 000 0000"
             value={this.props.phone}
             onChangeText={value => this.props.profileUpdate({ prop: 'phone', value })}
           />
