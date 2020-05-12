@@ -11,7 +11,9 @@ import {
   CREATE_ADMIN,
   CREATE_ACC_SUCCESS,
   CREATE_ADMIN_SUCCESS,
-  LOGIN_ADMIN_SUCCESS
+  LOGIN_ADMIN_SUCCESS,
+  LOGOUT_USER,
+  LOGOUT_SUCCESS
 } from './types';
 
 export const emailChanged = (text) => {
@@ -67,10 +69,17 @@ export const createAdmin = ({ email, password }) => {
 };
 
 export const logOut = () => {
-  return (firebase.auth().signOut()
-  .then (Actions.login())
-  ); 
+  return (
+    firebase.auth().signOut()
+    .then (Actions.auth())
+  );
 };
+
+// const logoutSuccess = (dispatch) => {
+//   dispatch({
+//     type: LOGOUT_SUCCESS });
+//   Actions.auth();
+// };
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });

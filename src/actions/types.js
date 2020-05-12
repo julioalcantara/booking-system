@@ -4,6 +4,9 @@ export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 
+export const LOGOUT_USER = 'logout_user';
+export const LOGOUT_SUCCESS = 'logout_success'
+
 export const LOGIN_ADMIN = 'login_admin';
 export const LOGIN_ADMIN_SUCCESS = 'login_admin_success';
 

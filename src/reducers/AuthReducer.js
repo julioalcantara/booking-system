@@ -9,7 +9,9 @@ import {
     LOGIN_ADMIN,
     CREATE_ADMIN,
     LOGIN_ADMIN_SUCCESS,
-    CREATE_ADMIN_SUCCESS
+    CREATE_ADMIN_SUCCESS,
+    LOGOUT_USER,
+    LOGOUT_USER_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = { 
@@ -45,6 +47,10 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, ...INITIAL_STATE, admin: action.payload, error: '', loading: false };
         case LOGIN_USER_FAIL: 
             return { ...state, error: 'Authentication Failed.', password: '', loading: false };
+        case LOGOUT_USER:
+            return state;
+        case LOGOUT_USER_SUCCESS: 
+            return { INITIAL_STATE, error: '', loading: false };
         default:
             return state;
     }
