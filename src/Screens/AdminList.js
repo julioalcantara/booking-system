@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, View, StyleSheet, TouchableOpacity} from 'react-native';
-import { adminProfilesFetch, goToBookings, goToProfile, goToStudioProfile } from '../actions';
+import { adminProfilesFetch, goToUsersBookings, goToProfile, goToStudioProfile } from '../actions';
 import { NavLink } from '../components/common/NavLink';
 import AdminItem from '../components/AdminItem';
 
@@ -40,7 +40,7 @@ renderRow(adminProfile) {
                   <NavLink text="profile"/>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={goToBookings}>
+                <TouchableOpacity onPress={goToUsersBookings}>
                   <NavLink text="bookings"/>
                 </TouchableOpacity>
                   
