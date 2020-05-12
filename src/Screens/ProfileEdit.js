@@ -56,7 +56,7 @@ class ProfileEdit extends Component {
 
         <CardSection>
           <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-            Delite Profile
+            Delete Profile
           </Button>
         </CardSection>
 

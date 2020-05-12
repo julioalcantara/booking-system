@@ -1,18 +1,18 @@
 import {
-    PROFILE_UPDATE,
+    ADMIN_UPDATE,
     ADMIN_PROFILE,
     ADMIN_SAVE_SUCCESS
   } from '../actions/types';
   
   const INITIAL_STATE = {
-    firstName: '',
-    lastName: '',
-    phone: ''
+    afirstName: '',
+    alastName: '',
+    aphone: ''
   };
   
   export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-      case PROFILE_UPDATE:
+      case ADMIN_UPDATE:
         return { ...state, [action.payload.prop]: action.payload.value };
       case ADMIN_PROFILE:
         return INITIAL_STATE;

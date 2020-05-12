@@ -17,7 +17,7 @@ import CreateAdmin from './Forms/CreateAdmin';
 import AdminForm from './Forms/AdminForm'
 
 import AdminList from './Screens/AdminList';
-import AdminCreate from './Screens/AdminCreate';
+import AdminCreateProfile from './Screens/AdminCreateProfile';
 import AdminEdit from './Screens/AdminEdit';
 
 
@@ -46,14 +46,14 @@ const RouterComponent = () => {
 
                 <Scene key="admin_main">
                     <Scene 
-                        onRight={()=> Actions.adminCreate()}
+                        onRight={()=> Actions.adminCreateProfile()}
                         rightTitle="Add"
                         key="adminList" 
                         component={AdminList} 
                         title="Admin" 
                         initial
                     />
-                    <Scene key="adminCreate" component={AdminCreate} title="Create Admin" />
+                    <Scene key="adminCreateProfile" component={AdminCreateProfile} title="Create Admin" />
                     <Scene key="adminEdit" component={AdminEdit} title="Edit Admin" />
                 </Scene>
 

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { profileUpdate, adminCreate } from '../actions';
+import { profileUpdate, adminCreateProfile } from '../actions';
 import { Card, CardSection, Button } from '../components/common';
 import AdminProfileForm from '../Forms/AdminProfileForm';
 
-class AdminCreate extends Component {
+class AdminCreateProfile extends Component {
   onButtonPress() {
-    const { firstName, lastName, phone } = this.props;
+    const { afirstName, alastName, aphone } = this.props;
 
-    this.props.profileCreate({ firstName, lastName, phone });
+    this.props.adminCreateProfile({ afirstName, alastName, aphone });
   }
 
   render() {
@@ -26,11 +26,11 @@ class AdminCreate extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { firstName, lastName, phone } = state.adminForm;
+  const { afirstName, alastName, aphone } = state.adminForm;
 
-  return { firstName, lastName, phone };
+  return { afirstName, alastName, aphone };
 };
 
 export default connect(mapStateToProps, {
-  profileUpdate, adminCreate
-})(AdminCreate);
+  profileUpdate, adminCreateProfile
+})(AdminCreateProfile);

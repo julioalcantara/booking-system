@@ -11,18 +11,18 @@ class AdminProfileForm extends Component {
         <CardSection>
           <Input
             label="First Name: "
-            placeholder="your first name"
-            value={this.props.firstName}
-            onChangeText={value => this.props.adminUpdate({ prop: 'firstName', value })}
+            placeholder=""
+            value={this.props.afirstName}
+            onChangeText={value => this.props.adminUpdate({ prop: 'afirstName', value })}
           />
         </CardSection>
 
         <CardSection>
           <Input
             label="Last Name: "
-            placeholder="your last name"
-            value={this.props.lastName}
-            onChangeText={value => this.props.adminUpdate({ prop: 'lastName', value })}
+            placeholder=""
+            value={this.props.alastName}
+            onChangeText={value => this.props.adminUpdate({ prop: 'alastName', value })}
           />
         </CardSection>
 
@@ -30,8 +30,8 @@ class AdminProfileForm extends Component {
           <Input
             label="Phone: "
             placeholder="(000) 00 000 0000"
-            value={this.props.phone}
-            onChangeText={value => this.props.adminUpdate({ prop: 'phone', value })}
+            value={this.props.aphone}
+            onChangeText={value => this.props.adminUpdate({ prop: 'aphone', value })}
           />
         </CardSection>
       </View>
@@ -47,9 +47,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { firstName, lastName, phone } = state.adminProfileForm;
+  const { afirstName, alastName, aphone } = state.adminForm;
 
-  return { firstName, lastName, phone };
+  return { afirstName, alastName, aphone };
 };
 
 export default connect(mapStateToProps, { adminUpdate })(AdminProfileForm);

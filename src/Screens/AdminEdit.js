@@ -2,30 +2,29 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
-import ProfileForm from '../Forms/ProfileForm';
 import { adminUpdate, adminProfileSave, adminDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from '../components/common';
-import AdminForm from '../Forms/AdminForm';
+import AdminProfileForm from '../Forms/AdminProfileForm';
 
 class AdminEdit extends Component {
   state = { showModal: false };
 
   UNSAFE_componentWillMount() {
-    _.each(this.props.admin, (value, prop) => {
+    _.each(this.props.adminProfile, (value, prop) => {
       this.props.adminUpdate({ prop, value });
     });
   }
 
   onButtonPress() {
-    const { firstName, lastName, phone } = this.props;
+    const { afirstName, alastName, aphone } = this.props;
 
-    this.props.adminProfileSave({ firstName, lastName, phone, uid: this.props.profile.uid });
+    this.props.adminProfileSave({ afirstName, alastName, aphone, uid: this.props.adminProfile.uid });
   }
 
   onAccept() {
-    const { uid } = this.props.admin;
+    const { uid } = this.props.adminProfile;
 
-    this.props.profileDelete({ uid });
+    this.props.adminDelete({ uid });
   }
 
   onDecline() {
@@ -35,7 +34,7 @@ class AdminEdit extends Component {
   render() {
     return (
       <Card>
-        <AdminForm />
+        <AdminProfileForm />
 
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
@@ -45,7 +44,7 @@ class AdminEdit extends Component {
 
         <CardSection>
           <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-            Delite Profile
+            Delete Profile
           </Button>
         </CardSection>
 
@@ -62,9 +61,9 @@ class AdminEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { firstName, lastName, phone } = state.AdminForm;
+  const { afirstName, alastName, aphone } = state.adminForm;
 
-  return { firstName, lastName, phone };
+  return { afirstName, alastName, aphone };
 };
 
 export default connect(mapStateToProps, {

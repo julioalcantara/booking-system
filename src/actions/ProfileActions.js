@@ -51,12 +51,12 @@ export const profileCreate = ({ firstName, lastName, phone, tattooStyle }) => {
   }
 };
 
-export const adminCreate = ({ firstName, lastName, phone }) => {
+export const adminCreateProfile = ({ afirstName, alastName, aphone }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/admins/${currentUser.uid}/profiles`)
-    .push({ firstName, lastName, phone })
+    firebase.database().ref(`/admins/${currentUser.uid}/adminProfiles`)
+    .push({ afirstName, alastName, aphone })
     .then(() => {
       dispatch({ type: ADMIN_PROFILE })
       Actions.pop()
@@ -75,11 +75,11 @@ export const profilesFetch = () => {
   };
 };
 
-export const adminFetch = () => {
+export const adminProfilesFetch = () => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/admins/${currentUser.uid}/profiles`)
+    firebase.database().ref(`/admins/${currentUser.uid}/adminProfiles`)
     .on('value', snapshot => {
       dispatch({ type: ADMIN_FETCH_PROFILE, payload: snapshot.val() });
     });
@@ -99,15 +99,15 @@ export const profileSave = ({ firstName, lastName, phone, tattooStyle, uid }) =>
   };
 };
 
-export const adminProfileSave = ({ firstName, lastName, phone, uid }) => {
+export const adminProfileSave = ({ afirstName, alastName, aphone, uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/admins/${uid}`)
-      .set({ firstName, lastName, phone })
+    firebase.database().ref(`/admins/${currentUser.uid}/adminProfiles/${uid}`)
+      .set({ afirstName, alastName, aphone })
       .then(() => {
         dispatch({ type: ADMIN_SAVE_SUCCESS })
-        Actions.profileList({ type: 'reset' });
+        Actions.adminList({ type: 'reset' });
       });
   };
 };
@@ -128,10 +128,10 @@ export const adminDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
 
   return () => {
-    firebase.database().ref(`/users/${currentUser.uid}/admins/${uid}`)
+    firebase.database().ref(`/admins/${currentUser.uid}/adminProfiles/${uid}`)
       .remove()
       .then(() => {
-        Actions.profileList({ type: 'reset' });
+        Actions.adminList({ type: 'reset' });
       });
   };
 };

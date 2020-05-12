@@ -5,19 +5,19 @@ import { CardSection } from './common';
 
 class AdminItem extends Component {
   onRowPress() {
-    Actions.profileEdit({ admin: this.props.admin });
+    Actions.adminEdit({ adminProfile: this.props.adminProfile });
   }
 
   render() {
-    const { firstName } = this.props.admin;
-    const { lastName } = this.props.admin;
+    const { afirstName } = this.props.adminProfile;
+    const { alastName } = this.props.adminProfile;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
           <CardSection>
             <Text style={styles.titleStyle}>
-              {firstName} {lastName}
+              {afirstName} {alastName}
             </Text>
           </CardSection>
         </View>

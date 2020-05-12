@@ -14,5 +14,5 @@ export default combineReducers ({
    bookingForm: BookingFormReducer,
    bookings: BookingReducer,
    adminForm: AdminFormReducer,
-   admins: AdminReducer
+   adminProfiles: AdminReducer
 });

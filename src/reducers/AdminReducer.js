@@ -6,7 +6,7 @@ import {
   
   export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case ADMIN_FETCH_PROFILE :
+        case ADMIN_FETCH_PROFILE:
             return action.payload;
         
         default:

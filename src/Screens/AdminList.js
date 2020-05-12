@@ -2,13 +2,13 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, View, StyleSheet, TouchableOpacity} from 'react-native';
-import { adminFetch, goToBookings, goToProfile, goToStudioProfile } from '../actions';
+import { adminProfilesFetch, goToBookings, goToProfile, goToStudioProfile } from '../actions';
 import { NavLink } from '../components/common/NavLink';
 import AdminItem from '../components/AdminItem';
 
 class AdminList extends Component {
   UNSAFE_componentWillMount() {
-    this.props.adminFetch(); 
+    this.props.adminProfilesFetch(); 
 }
 
 state = {
@@ -17,18 +17,18 @@ state = {
 
 renderRefreshControl() {
     this.setState({ isLoading: true })
-    this.props.adminFetch();
+    this.props.adminProfilesFetch();
 }
 
-renderRow(admin) {
-    return <AdminItem admin={admin} />;
+renderRow(adminProfile) {
+    return <AdminItem adminProfile={adminProfile} />;
   }
 
   render() {
     return (
         <View style={styles.container}>
             <FlatList 
-                data = {this.props.admins}
+                data = {this.props.adminProfiles}
                 renderItem = {({item}) => this.renderRow(item)}
                 onRefresh={() => this.renderRefreshControl()}
 				        refreshing={this.state.isLoading}
@@ -45,7 +45,7 @@ renderRow(admin) {
                 </TouchableOpacity>
                   
                 <TouchableOpacity onPress={goToStudioProfile}>
-                  <NavLink text="studio"/>
+                  <NavLink text="users"/>
                 </TouchableOpacity>   
             </View>
             
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const admins = _.map(state.admins, (val, uid) => {
+  const adminProfiles = _.map(state.adminProfiles, (val, uid) => {
     return { ...val, uid };
   });
 
-  return { admins };
+  return { adminProfiles };
 };
 
-export default connect(mapStateToProps, { adminFetch })(AdminList);
+export default connect(mapStateToProps, { adminProfilesFetch })(AdminList);
