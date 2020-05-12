@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet,TouchableOpacity } from 'react-native';
+import { View, StyleSheet,TouchableOpacity, Text } from 'react-native';
 import { goToBookings, goToProfile, goToStudioProfile, logOut } from '../actions';
 import { Image } from 'react-native-elements';
-import { NavLink } from '../components/common/NavLink';
-import { BtnNavLink } from '../components/common/BtnNavLink';
+import { NavLink, CardSection } from '../components/common';
 
 class StudioProfileScreen  extends Component {
+
+    onRowPress() {
+        const txt = <Text>Jajjjjajajaja</Text>;
+    }
+    
     render() {
         return (
             <View style={styles.container}>
@@ -14,16 +18,29 @@ class StudioProfileScreen  extends Component {
                     source={ require('../images/voodooLogo1.png')}
                     style={styles.imageStyle}
                 />
-                <View>
-                    <BtnNavLink text = "About" />
-                    <BtnNavLink text = "Location" />
-                    <BtnNavLink text = "Terms and Conditions" />
-                    <BtnNavLink text = "Date Availability" />
-
-                    <TouchableOpacity onPress={logOut}>
-                        <BtnNavLink text = "Log Out" />
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={this.onRowPress.bind(this)}>
+                    <CardSection>
+                        <Text style={styles.textStyle}>About</Text>
+                    </CardSection>
+                </TouchableOpacity>
+                
+                <TouchableOpacity>
+                    <CardSection>
+                        <Text style={styles.textStyle}>Location</Text>
+                    </CardSection>   
+                </TouchableOpacity>
+                
+                <TouchableOpacity>
+                    <CardSection>
+                        <Text style={styles.textStyle}>Terms and Conditios</Text>
+                    </CardSection>
+                </TouchableOpacity>
+                
+                <TouchableOpacity onPress={logOut}>
+                    <CardSection>
+                        <Text style={styles.textStyle}>Log Out</Text>
+                    </CardSection>
+                </TouchableOpacity>
                 
                 
                 <View style={styles.iconStyle} >
@@ -61,7 +78,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-      }
+      },
+    textStyle: {
+        fontSize: 20,
+        padding: 10
+    }
 });
 
 export default StudioProfileScreen;
