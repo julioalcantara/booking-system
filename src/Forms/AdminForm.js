@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, goToCreateAcc, goToAdminLogin } from '../actions';
+import { emailChanged, passwordChanged, loginAdmin, goToCreateAdmin, goToLogin } from '../actions';
 import { Card, CardSection, Input, Button, Spinner, NavLink } from '../components/common';
 
-class LoginForm extends Component {
+class AdminForm extends Component {
     onEmailChange(text) {
         this.props.emailChanged(text);
     }
@@ -15,7 +15,7 @@ class LoginForm extends Component {
 
     onButtonPress() {
         const { email, password } = this.props;
-        this.props.loginUser({ email, password });
+        this.props.loginAdmin({ email, password });
     }
 
     renderError() {
@@ -70,18 +70,17 @@ class LoginForm extends Component {
                     {this.renderButton()}
                 </CardSection>
 
-                <TouchableOpacity onPress={goToCreateAcc}>
+                <TouchableOpacity onPress={goToLogin}>
+                    <NavLink 
+                        text = "Login as user, HERE!"
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={goToCreateAdmin}>
                     <NavLink 
                         text = "Go to create account"
                     />
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={goToAdminLogin}>
-                    <NavLink 
-                        text = "Admin Area"
-                    />
-                </TouchableOpacity>
-                
             </Card>
         );
     }
@@ -96,11 +95,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, loginUser, error, loading } = auth;
+    const { email, password, loginAdmin, error, loading } = auth;
   
-    return { email, password, loginUser, error, loading };
+    return { email, password, loginAdmin, error, loading };
   };
   
   export default connect(mapStateToProps, {
-    emailChanged, passwordChanged, loginUser, goToCreateAcc, goToAdminLogin
-  })(LoginForm);
+    emailChanged, passwordChanged, loginAdmin, goToCreateAdmin, goToLogin
+  })(AdminForm);

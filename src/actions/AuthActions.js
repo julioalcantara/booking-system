@@ -6,8 +6,12 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
+  LOGIN_ADMIN,
   CREATE_ACCOUNT,
-  CREATE_ACC_SUCCESS
+  CREATE_ADMIN,
+  CREATE_ACC_SUCCESS,
+  CREATE_ADMIN_SUCCESS,
+  LOGIN_ADMIN_SUCCESS
 } from './types';
 
 export const emailChanged = (text) => {
@@ -34,6 +38,16 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
+export const loginAdmin = ({ email, password }) => {
+  return (dispatch) => {
+    dispatch({ type: LOGIN_ADMIN });
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(admin => loginAdmimnSuccess(dispatch, admin))
+      .catch(() => loginUserFail(dispatch));
+  };
+};
+
 export const createAccount = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: CREATE_ACCOUNT });
@@ -41,6 +55,21 @@ export const createAccount = ({ email, password }) => {
         .then(user => createAccSuccess(dispatch, user))
         .catch(() => loginUserFail(dispatch));
   };
+};
+
+export const createAdmin = ({ email, password }) => {
+  return (dispatch) => {
+    dispatch({ type: CREATE_ADMIN });
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(admin => createAdminSuccess(dispatch, admin))
+        .catch(() => loginUserFail(dispatch));
+  };
+};
+
+export const logOut = () => {
+  return (firebase.auth().signOut()
+  .then (Actions.login())
+  ); 
 };
 
 const loginUserFail = (dispatch) => {
@@ -56,6 +85,15 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.main();
 };
 
+const loginAdmimnSuccess = (dispatch, admin) => {
+  dispatch({
+    type: LOGIN_ADMIN_SUCCESS,
+    payload: admin
+  });
+
+  Actions.admin_main();
+};
+
 const createAccSuccess = (dispatch, user) => {
   dispatch({
     type: CREATE_ACC_SUCCESS,
@@ -63,6 +101,15 @@ const createAccSuccess = (dispatch, user) => {
   });
 
   Actions.main();
+};
+
+const createAdminSuccess = (dispatch, admin) => {
+  dispatch({
+    type: CREATE_ADMIN_SUCCESS,
+    payload: admin
+  });
+
+  Actions.admin_main();
 };
 
 //navigate to Create Screen
@@ -73,4 +120,14 @@ export const goToCreateAcc = () => {
 //navigate to Login screen
 export const goToLogin = () => {
   return Actions.login();
+}
+
+//navigate to Create Admin Screen
+export const goToCreateAdmin = () => {
+  return Actions.createAdmin();
+}
+
+//navigate to Login Admin screen
+export const goToAdminLogin = () => {
+  return Actions.loginAdmin();
 }

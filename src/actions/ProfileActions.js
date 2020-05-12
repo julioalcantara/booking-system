@@ -8,12 +8,23 @@ import {
     PROFILE_UPDATE,
     PROFILE_CREATE,
     PROFILES_FETCH_SUCCESS,
-    PROFILE_SAVE_SUCCESS
+    PROFILE_SAVE_SUCCESS,
+    ADMIN_PROFILE,
+    ADMIN_FETCH_PROFILE,
+    ADMIN_SAVE_SUCCESS,
+    ADMIN_UPDATE
 } from './types';
 
 export const profileUpdate = ({ prop, value }) => {
   return {
     type:PROFILE_UPDATE,
+    payload: { prop, value }
+  };  
+};
+
+export const adminUpdate = ({ prop, value }) => {
+  return {
+    type:ADMIN_UPDATE,
     payload: { prop, value }
   };  
 };
@@ -40,6 +51,19 @@ export const profileCreate = ({ firstName, lastName, phone, tattooStyle }) => {
   }
 };
 
+export const adminCreate = ({ firstName, lastName, phone }) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/admins/${currentUser.uid}/profiles`)
+    .push({ firstName, lastName, phone })
+    .then(() => {
+      dispatch({ type: ADMIN_PROFILE })
+      Actions.pop()
+    });
+  }
+};
+
 export const profilesFetch = () => {
   const { currentUser } = firebase.auth();
 
@@ -47,6 +71,17 @@ export const profilesFetch = () => {
     firebase.database().ref(`/users/${currentUser.uid}/profiles`)
     .on('value', snapshot => {
       dispatch({ type: PROFILES_FETCH_SUCCESS, payload: snapshot.val() });
+    });
+  };
+};
+
+export const adminFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/admins/${currentUser.uid}/profiles`)
+    .on('value', snapshot => {
+      dispatch({ type: ADMIN_FETCH_PROFILE, payload: snapshot.val() });
     });
   };
 };
@@ -64,11 +99,36 @@ export const profileSave = ({ firstName, lastName, phone, tattooStyle, uid }) =>
   };
 };
 
+export const adminProfileSave = ({ firstName, lastName, phone, uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/admins/${uid}`)
+      .set({ firstName, lastName, phone })
+      .then(() => {
+        dispatch({ type: ADMIN_SAVE_SUCCESS })
+        Actions.profileList({ type: 'reset' });
+      });
+  };
+};
+
 export const profileDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
 
   return () => {
     firebase.database().ref(`/users/${currentUser.uid}/profiles/${uid}`)
+      .remove()
+      .then(() => {
+        Actions.profileList({ type: 'reset' });
+      });
+  };
+};
+
+export const adminDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/admins/${uid}`)
       .remove()
       .then(() => {
         Actions.profileList({ type: 'reset' });

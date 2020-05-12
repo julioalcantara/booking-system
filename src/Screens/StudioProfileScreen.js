@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet,TouchableOpacity } from 'react-native';
-import { goToBookings, goToProfile, goToStudioProfile } from '../actions';
+import { goToBookings, goToProfile, goToStudioProfile, logOut } from '../actions';
 import { Image } from 'react-native-elements';
 import { NavLink } from '../components/common/NavLink';
 import { BtnNavLink } from '../components/common/BtnNavLink';
@@ -19,6 +19,10 @@ class StudioProfileScreen  extends Component {
                     <BtnNavLink text = "Location" />
                     <BtnNavLink text = "Terms and Conditions" />
                     <BtnNavLink text = "Date Availability" />
+
+                    <TouchableOpacity onPress={logOut}>
+                        <BtnNavLink text = "Log Out" />
+                    </TouchableOpacity>
                 </View>
                 
                 
