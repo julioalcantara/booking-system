@@ -10,6 +10,7 @@ import ProfileEdit from './Screens/ProfileEdit';
 import BookingList from './Screens/BookingList';
 import BookingCreate from './Screens/BookingCreate';
 import BookingEdit from './Screens/BookingEdit';
+import UserBookingsScreen from './Screens/UsersBookingsScreen';
 
 import StudioProfileScreen from './Screens/StudioProfileScreen';
 
@@ -68,6 +69,10 @@ const RouterComponent = () => {
                     />
                     <Scene key="bookingCreate" component={BookingCreate} title="Create Booking" />
                     <Scene key="bookingEdit" component={BookingEdit} title="Edit Booking" />
+                </Scene>
+
+                <Scene key="allBookings">
+                    <Scene key="userBookings" component={UserBookingsScreen} title="User Bookings" />
                 </Scene>
 
                 <Scene key="studio">

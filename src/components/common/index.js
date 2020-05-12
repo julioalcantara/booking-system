@@ -7,3 +7,4 @@ export * from './Spinner';
 export * from './Confirm';
 export * from './NavLink';
 export * from './Spacer';
+export * from './BtnNavLink';

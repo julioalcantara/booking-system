@@ -51,6 +51,17 @@ export const bookingsFetch = () => {
   };
 };
 
+export const bookingsFetchAll = () => {
+  
+  return (dispatch) => {
+    firebase.database().ref('/users/bookings')
+    .on('value', snapshot => {
+      dispatch({ type: BOOKINGS_FETCH_SUCCESS, payload: snapshot.val() });
+    });
+  }; 
+};
+ 
+
 export const bookingSave = ({ bookingTitle, checkin, checkout, uid }) => {
   const { currentUser } = firebase.auth();
 
@@ -89,4 +100,9 @@ export const goToProfile = () => {
 //navigate to studio profile screen
 export const goToStudioProfile = () => {
   return Actions.studio();
+}
+
+//navigate to users bookins screen
+export const goToUsersBookings = () => {
+  return Actions.allBookings();
 }
