@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { CardSection } from './common';
+import { MaterialIcons } from '@expo/vector-icons';
 
 class ProfileItem extends Component {
   onRowPress() {
@@ -15,22 +15,21 @@ class ProfileItem extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
-          <CardSection>
             <Text style={styles.titleStyle}>
-              {firstName} {lastName}
+              Hi, {firstName} {lastName}
+              <MaterialIcons style={styles.editIcon} name = "mode-edit"/>
             </Text>
-          </CardSection>
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 18,
-    paddingLeft: 15
+    paddingLeft: 35
   }
-};
+});
 
 export default ProfileItem;
