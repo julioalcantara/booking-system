@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native-elements';
 import { FlatList, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import { profilesFetch, goToBookings, goToProfile, goToStudioProfile, goToProfileEdit } from '../actions';
+import { profilesFetch, goToBookings, goToProfile, goToStudioProfile, logOut } from '../actions';
 import { NavLink } from '../components/common/NavLink';
 import { Ionicons } from '@expo/vector-icons';
 import { CardSection } from '../components/common';
@@ -45,8 +45,6 @@ class UserProfileScreen extends Component {
             keyExtractor={(item, index) => item.uid}
           />
 
-          
-
           <View style={styles.imageStyle}>
             <Image
                 source={ require('../images/logo2.png')}
@@ -57,10 +55,21 @@ class UserProfileScreen extends Component {
 
         <TouchableOpacity>
           <CardSection>
-            <Text style={styles.textStyle}> Edit Profile </Text>
+            <Text style={styles.textStyle}> Personal Information </Text>
+          </CardSection>  
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <CardSection>
+            <Text style={styles.textStyle}> Galery </Text>
           </CardSection>  
         </TouchableOpacity>
         
+        <TouchableOpacity onPress={logOut}>
+            <CardSection>
+                <Text style={styles.textStyle}>Log Out</Text>
+            </CardSection>
+        </TouchableOpacity>
         
 
         <View style={styles.iconStyle} >
