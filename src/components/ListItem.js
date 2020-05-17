@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { EvilIcons } from '@expo/vector-icons';
 import { CardSection } from './common';
 
 class ListItem extends Component {
@@ -16,7 +17,7 @@ class ListItem extends Component {
         <View>
           <CardSection>
             <Text style={styles.titleStyle}>
-              {bookingTitle}
+              <EvilIcons style={styles.calendarIcon} name = "calendar" /> {bookingTitle}
             </Text>
           </CardSection>
         </View>
@@ -25,11 +26,14 @@ class ListItem extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15
+  },
+  calendarIcon: {
+    fontSize: 35,
   }
-};
+});
 
 export default ListItem;
