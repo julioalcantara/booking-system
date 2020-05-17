@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Image } from 'react-native-elements';
 import { FlatList, View, RefreshControl, StyleSheet, TouchableOpacity} from 'react-native';
 import { bookingsFetch, goToProfile, goToBookings, goToStudioProfile } from '../actions';
 import { NavLink } from '../components/common/NavLink';
@@ -27,6 +28,12 @@ renderRow(booking) {
   render() {
     return (
         <View style={styles.container} > 
+            <View style={styles.imageStyle}>
+                <Image
+                    source={ require('../images/logo2.png')}
+                    style={{ width: 150, height: 150}}
+                />
+            </View>
             <FlatList 
                 data = {this.props.bookings}
                 renderItem = {({item}) => this.renderRow(item)}
@@ -64,6 +71,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-end',
+  },
+  imageStyle: {
+    marginTop: 20,
+    marginBottom: 20,
+    alignItems: 'center'
   }
 });
 

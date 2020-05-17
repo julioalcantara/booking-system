@@ -91,7 +91,7 @@ const loginUserSuccess = (dispatch, user) => {
     payload: user
   });
 
-  Actions.main();
+  Actions.profile();
 };
 
 const loginAdmimnSuccess = (dispatch, admin) => {
@@ -120,23 +120,3 @@ const createAdminSuccess = (dispatch, admin) => {
 
   Actions.admin_main();
 };
-
-//navigate to Create Screen
-export const goToCreateAcc = () => {
-  return Actions.createAccont();
-}
-
-//navigate to Login screen
-export const goToLogin = () => {
-  return Actions.login();
-}
-
-//navigate to Create Admin Screen
-export const goToCreateAdmin = () => {
-  return Actions.createAdmin();
-}
-
-//navigate to Login Admin screen
-export const goToAdminLogin = () => {
-  return Actions.loginAdmin();
-}

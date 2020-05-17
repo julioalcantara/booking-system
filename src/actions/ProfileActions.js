@@ -46,7 +46,7 @@ export const profileCreate = ({ firstName, lastName, phone, tattooStyle }) => {
     .push({ firstName, lastName, phone, tattooStyle })
     .then(() => {
       dispatch({ type: PROFILE_CREATE })
-      Actions.pop()
+      Actions.profile();
     });
   }
 };
@@ -94,7 +94,7 @@ export const profileSave = ({ firstName, lastName, phone, tattooStyle, uid }) =>
       .set({ firstName, lastName, phone, tattooStyle })
       .then(() => {
         dispatch({ type: PROFILE_SAVE_SUCCESS })
-        Actions.profileList({ type: 'reset' });
+        Actions.profile({ type: 'reset' });
       });
   };
 };
@@ -119,7 +119,7 @@ export const profileDelete = ({ uid }) => {
     firebase.database().ref(`/users/${currentUser.uid}/profiles/${uid}`)
       .remove()
       .then(() => {
-        Actions.profileList({ type: 'reset' });
+        Actions.profile({ type: 'reset' });
       });
   };
 };

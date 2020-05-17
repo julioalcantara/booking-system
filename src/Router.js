@@ -3,9 +3,10 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './Forms/LoginForm';
 import CreateAccount from './Forms/CreateAccount';
 
-import ProfileList from './Screens/ProfileList';
+import HomeScreen from './Screens/HomeScreen';
 import ProfileCreate from './Screens/ProfileCreate';
 import ProfileEdit from './Screens/ProfileEdit';
+import UserProfileScreen from './Screens/UserProfileScreen';
 
 import BookingList from './Screens/BookingList';
 import BookingCreate from './Screens/BookingCreate';
@@ -36,13 +37,19 @@ const RouterComponent = () => {
                     <Scene 
                         onRight={()=> Actions.profileCreate()}
                         rightTitle="Add"
-                        key="profileList" 
-                        component={ProfileList} 
-                        title="Profile" 
+                        key="homeScreen" 
+                        component={HomeScreen} 
+                        title="Create a Profile" 
                         initial
                     />
                     <Scene key="profileCreate" component={ProfileCreate} title="Create Profile" />
+                    
+                </Scene>
+
+                <Scene key="profile">
+                    <Scene key="userProfile" component={UserProfileScreen} title="Profile" />
                     <Scene key="profileEdit" component={ProfileEdit} title="Edit Profile" />
+                    
                 </Scene>
 
                 <Scene key="admin_main">

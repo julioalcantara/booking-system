@@ -87,22 +87,3 @@ export const bookingDelete = ({ uid }) => {
   };
 };
 
-//navigate to booking screen
-export const goToBookings = () => {
-  return Actions.booking();
-}
-
-//navigate to profile screen
-export const goToProfile = () => {
-  return Actions.main();
-}
-
-//navigate to studio profile screen
-export const goToStudioProfile = () => {
-  return Actions.studio();
-}
-
-//navigate to users bookins screen
-export const goToUsersBookings = () => {
-  return Actions.allBookings();
-}

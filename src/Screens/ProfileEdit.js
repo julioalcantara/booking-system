@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Communications from 'react-native-communications';
 import ProfileForm from '../Forms/ProfileForm';
 import { profileUpdate, profileSave, profileDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from '../components/common';
@@ -19,12 +18,6 @@ class ProfileEdit extends Component {
     const { firstName, lastName, phone, tattooStyle } = this.props;
 
     this.props.profileSave({ firstName, lastName, phone, tattooStyle, uid: this.props.profile.uid });
-  }
-
-  onTextPress() {
-    const { phone, shift } = this.props;
-
-    Communications.text(phone, `Your upcoming shift is on ${shift}`);
   }
 
   onAccept() {
@@ -48,17 +41,11 @@ class ProfileEdit extends Component {
           </Button>
         </CardSection>
 
-        <CardSection>
-          <Button onPress={this.onTextPress.bind(this)}>
-            Text Schedule
-          </Button>
-        </CardSection>
-
-        <CardSection>
+        {/* <CardSection>
           <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
             Delete Profile
           </Button>
-        </CardSection>
+        </CardSection> */}
 
         <Confirm
           visible={this.state.showModal}
