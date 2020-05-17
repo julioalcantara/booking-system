@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { View, StyleSheet,TouchableOpacity, Text } from 'react-native';
-import { goToBookings, goToProfile, goToStudioProfile, logOut } from '../actions';
+import { View, StyleSheet,TouchableOpacity, Text, Linking } from 'react-native';
+import { goToBookings, goToProfile, goToStudioProfile } from '../actions';
 import { Image } from 'react-native-elements';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavLink, CardSection } from '../components/common';
 
 class StudioProfileScreen  extends Component {
-
-    onRowPress() {
-        const txt = <Text>Jajjjjajajaja</Text>;
-    }
     
     render() {
         return (
@@ -18,13 +14,15 @@ class StudioProfileScreen  extends Component {
                     source={ require('../images/voodooLogo1.png')}
                     style={styles.imageStyle}
                 />
-                <TouchableOpacity onPress={this.onRowPress.bind(this)}>
+                <TouchableOpacity >
                     <CardSection>
                         <Text style={styles.textStyle}>About</Text>
                     </CardSection>
                 </TouchableOpacity>
                 
-                <TouchableOpacity>
+                <TouchableOpacity 
+                     onPress={() => 
+                        Linking.openURL('https://www.google.com/maps/place/275+Glasnevin+Ave,+Glasnevin,+Dublin+11,+D11+Y18W/@53.3901957,-6.2886426,17z/data=!3m1!4b1!4m5!3m4!1s0x48670dfb82a43571:0x1a151e7412818fd6!8m2!3d53.3901925!4d-6.2864539')}>
                     <CardSection>
                         <Text style={styles.textStyle}>Location</Text>
                     </CardSection>   
@@ -35,14 +33,40 @@ class StudioProfileScreen  extends Component {
                         <Text style={styles.textStyle}>Terms and Conditios</Text>
                     </CardSection>
                 </TouchableOpacity>
-                
-                <TouchableOpacity onPress={logOut}>
+
+                <TouchableOpacity>
                     <CardSection>
-                        <Text style={styles.textStyle}>Log Out</Text>
+                        <Text style={styles.textStyle}>Amenties</Text>
                     </CardSection>
                 </TouchableOpacity>
+
+
+                {/* social media */}
+                <View style={styles.socialContainer}>
+                    <AntDesign 
+                        style={styles.socialIcon} 
+                        name = "instagram"
+                        onPress={() => 
+                            Linking.openURL('https://www.instagram.com/voodooinktattoodublin/')}
+                    />
+                         
+                    <AntDesign 
+                        style={styles.socialIcon} 
+                        name = "facebook-square"
+                        onPress={() => 
+                            Linking.openURL('https://www.facebook.com/GET.INKED.UP.NOW.GLASNEVIN/')}
+                        
+                    /> 
+                    <MaterialCommunityIcons 
+                        style={styles.socialIcon} 
+                        name = "web"
+                        onPress={() => 
+                            Linking.openURL('https://www.voodooinkstudio.com/')}
+                    /> 
+                </View>
                 
-                
+
+                {/* footer navigation */}
                 <View style={styles.iconStyle} >
                     <TouchableOpacity onPress={goToProfile}>
                         <NavLink text="profile"/>
@@ -78,6 +102,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
+        height: 30
+      },
+      socialContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+      },
+      socialIcon: {
+        marginTop: 30,
+        fontSize: 40
       },
     textStyle: {
         fontSize: 20,
