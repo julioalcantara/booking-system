@@ -127,10 +127,11 @@ export const profileDelete = ({ uid }) => {
 export const adminDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
 
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/admins/${currentUser.uid}/adminProfiles/${uid}`)
       .remove()
       .then(() => {
+        dispatch({ type: ADMIN_SAVE_SUCCESS })
         Actions.adminList({ type: 'reset' });
       });
   };

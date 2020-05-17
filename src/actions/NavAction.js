@@ -1,6 +1,5 @@
 import { Actions } from 'react-native-router-flux';
 
-
 //navigate to booking screen
 export const goToBookings = () => {
     return Actions.booking();

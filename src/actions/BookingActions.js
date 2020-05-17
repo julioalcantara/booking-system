@@ -70,7 +70,7 @@ export const bookingSave = ({ bookingTitle, checkin, checkout, uid }) => {
       .set({ bookingTitle, checkin, checkout })
       .then(() => {
         dispatch({ type: BOOKING_SAVE_SUCCESS })
-        Actions.bookingList({ type: 'reset' })
+        Actions.booking({ type: 'reset' })
       });
   };
 };
@@ -78,11 +78,12 @@ export const bookingSave = ({ bookingTitle, checkin, checkout, uid }) => {
 export const bookingDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
 
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/bookings/${uid}`)
       .remove()
       .then(() => {
-        Actions.bookingList({ type: 'reset' });
+        dispatch({ type: BOOKING_SAVE_SUCCESS })
+        Actions.booking({ type: 'reset' });
       });
   };
 };

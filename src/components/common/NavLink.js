@@ -12,7 +12,7 @@ const NavLink = ({ text }) => {
 
 const styles = StyleSheet.create({
     link: {
-        color: 'blue',
+        color: 'black',
         fontSize: 15
     }
 });

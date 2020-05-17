@@ -3,17 +3,13 @@ import { Actions } from 'react-native-router-flux';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
-  LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER,
   LOGIN_ADMIN,
   CREATE_ACCOUNT,
   CREATE_ADMIN,
   CREATE_ACC_SUCCESS,
   CREATE_ADMIN_SUCCESS,
   LOGIN_ADMIN_SUCCESS,
-  LOGOUT_USER,
-  LOGOUT_SUCCESS
 } from './types';
 
 export const emailChanged = (text) => {
@@ -32,8 +28,7 @@ export const passwordChanged = (text) => {
 
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER });
-
+    dispatch({ type: CREATE_ACCOUNT});
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(() => loginUserFail(dispatch));
@@ -75,19 +70,13 @@ export const logOut = () => {
   );
 };
 
-// const logoutSuccess = (dispatch) => {
-//   dispatch({
-//     type: LOGOUT_SUCCESS });
-//   Actions.auth();
-// };
-
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });
 };
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({
-    type: LOGIN_USER_SUCCESS,
+    type: CREATE_ACC_SUCCESS,
     payload: user
   });
 
