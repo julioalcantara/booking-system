@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Image } from 'react-native-elements';
 import { emailChanged, passwordChanged, loginUser, goToCreateAcc, goToAdminLogin } from '../actions';
 import { Card, CardSection, Input, Button, Spinner, NavLink } from '../components/common';
 
@@ -45,6 +46,13 @@ class LoginForm extends Component {
     render() {
         return (
             <Card>
+                <View style={styles.imageStyle}>
+                    <Image
+                        source={ require('../images/logo2.png')}
+                        style={{ width: 150, height: 150}}
+                    />
+                </View>
+
                 <CardSection>
                     <Input 
                         label = "Email"
@@ -92,7 +100,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         alignSelf: 'center',
         color: 'red'
-    }
+    },
+    imageStyle: {
+        marginTop: 20,
+        marginBottom: 20,
+        alignItems: 'center'
+      }
 });
 
 const mapStateToProps = ({ auth }) => {
