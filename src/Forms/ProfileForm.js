@@ -11,7 +11,6 @@ class ProfileForm extends Component {
         <CardSection>
           <Input
             label="First Name: "
-            placeholder="your first name"
             value={this.props.firstName}
             onChangeText={value => this.props.profileUpdate({ prop: 'firstName', value })}
           />
@@ -20,7 +19,6 @@ class ProfileForm extends Component {
         <CardSection>
           <Input
             label="Last Name: "
-            placeholder="your last name"
             value={this.props.lastName}
             onChangeText={value => this.props.profileUpdate({ prop: 'lastName', value })}
           />
