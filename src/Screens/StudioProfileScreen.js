@@ -36,7 +36,7 @@ class StudioProfileScreen  extends Component {
 
                 <TouchableOpacity>
                     <CardSection>
-                        <Text style={styles.textStyle}>Amenties</Text>
+                        <Text style={styles.textStyle}>Amenities</Text>
                     </CardSection>
                 </TouchableOpacity>
 
